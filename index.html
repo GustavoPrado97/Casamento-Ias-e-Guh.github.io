@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convite de Casamento - Iasmin & Gustavo</title>
+  <style>
+    :root {
+      --bg-color: #f7f5f0;
+      --primary-gold: #c5a059;
+      --dark-text: #4a4a4a;
+      --card-bg: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      font-family: 'Cinzel', 'Georgia', serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      padding: 20px;
+      box-sizing: border-box;
+      perspective: 1000px;
+    }
+
+    /* Envelope Visual */
+    .envelope-wrapper {
+      position: relative;
+      width: 100%;
+      background: #ebd8c3;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.6s ease;
+      overflow: hidden;
+    }
+
+    .envelope-cover {
+      padding: 60px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #fdfbf7 0%, #f4efe6 100%);
+      border: 1px solid #e0d8cb;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .logo-monogram {
+      font-size: 38px;
+      letter-spacing: 6px;
+      color: var(--primary-gold);
+      margin-bottom: 5px;
+      font-weight: 300;
+    }
+
+    .divider {
+      width: 120px;
+      height: 1px;
+      background: var(--primary-gold);
+      margin: 15px auto;
+    }
+
+    .couple-names {
+      font-size: 18px;
+      letter-spacing: 4px;
+      color: var(--primary-gold);
+      text-transform: uppercase;
+    }
+
+    .wax-seal {
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, #d4af37 0%, #aa820a 100%);
+      border-radius: 50%;
+      margin: 30px auto 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      color: #fff;
+      font-size: 22px;
+      border: 2px solid #f2e3b6;
+    }
+
+    .click-hint {
+      margin-top: 15px;
+      font-size: 12px;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* Cartão do Convite Interno */
+    .invitation-card {
+      display: none;
+      background: #ffffff;
+      padding: 40px 25px;
+      border-radius: 8px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      text-align: center;
+      border: 1px solid #e0d8cb;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .quote {
+      font-style: italic;
+      color: var(--primary-gold);
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 25px 0;
+    }
+
+    .event-details {
+      margin: 25px 0;
+      color: var(--dark-text);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .date-badge {
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--primary-gold);
+      letter-spacing: 2px;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .btn-rsvp {
+      background-color: var(--primary-gold);
+      color: #ffffff;
+    }
+
+    .btn-outline {
+      border: 1px solid var(--primary-gold);
+      color: var(--primary-gold);
+      background-color: transparent;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Envelope / Capa -->
+  <div class="envelope-wrapper" id="envelope" onclick="openEnvelope()">
+    <div class="envelope-cover">
+      <div class="logo-monogram">I | G</div>
+      <div class="divider"></div>
+      <div class="couple-names">Iasmin & Gustavo</div>
+      <div class="wax-seal">🌿</div>
+      <div class="click-hint">Clique para abrir</div>
+    </div>
+  </div>
+
+  <!-- Conteúdo do Convite -->
+  <div class="invitation-card" id="invitation">
+    <div class="logo-monogram">I | G</div>
+    <div class="couple-names">Iasmin & Gustavo</div>
+
+    <p class="quote">
+      "Provas de que milagres acontecem: nós vamos nos casar!<br>
+      Venha comemorar esse dia tão especial."
+    </p>
+
+    <div class="event-details">
+      <div class="date-badge">24 . 10 . 2026</div>
+      <p><strong>Igreja Nossa Senhora Aparecida</strong><br>
+      Av. 10, nº 98-186 - Vila Monte Alegre<br>Itirapina - SP</p>
+    </div>
+
+    <div class="action-buttons">
+      <a href="https://sites.icasei.com.br/iasminegustavo/rsvp" target="_blank" class="btn btn-rsvp">
+        ✅ Confirmar Presença (RSVP)
+      </a>
+      <a href="https://sites.icasei.com.br/iasminegustavo/store" target="_blank" class="btn btn-outline">
+        🎁 Lista de Presentes
+      </a>
+      <a href="https://maps.app.goo.gl/rLXZ62Tvdnk9CZXG9?g_st=aw" target="_blank" class="btn btn-outline">
+        📍 Como Chegar (Google Maps)
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openEnvelope() {
+    document.getElementById('envelope').style.display = 'none';
+    document.getElementById('invitation').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
