@@ -143,6 +143,13 @@
       letter-spacing: 2px;
     }
 
+    .time-badge {
+      font-size: 15px;
+      color: var(--primary-gold);
+      letter-spacing: 3px;
+      margin-top: 2px;
+    }
+
     .action-buttons {
       display: flex;
       flex-direction: column;
@@ -162,11 +169,16 @@
       letter-spacing: 1px;
       transition: all 0.3s ease;
       font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .btn-rsvp {
       background-color: var(--primary-gold);
       color: #ffffff;
+      border: 1px solid var(--primary-gold);
     }
 
     .btn-outline {
@@ -178,6 +190,67 @@
     .btn:hover {
       opacity: 0.9;
       transform: translateY(-2px);
+    }
+
+    /* Botão "Como Vai Ser o Grande Dia" (letra menor para caber numa linha) */
+    #infoBtn {
+      font-size: 13px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Sanfona */
+    .info-panel {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.5s ease, opacity 0.4s ease, margin 0.4s ease;
+      text-align: left;
+      color: var(--dark-text);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .info-panel.open {
+      max-height: 1200px;
+      opacity: 1;
+      margin-top: 4px;
+    }
+
+    .info-inner {
+      border: 1px solid #e0d8cb;
+      background: #fdfbf7;
+      border-radius: 14px;
+      padding: 18px 20px;
+    }
+
+    .info-inner h3 {
+      margin: 0 0 6px;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary-gold);
+    }
+
+    .info-inner h3:not(:first-child) {
+      margin-top: 18px;
+    }
+
+    .info-inner ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .info-inner li {
+      margin-bottom: 4px;
+    }
+
+    .arrow {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .btn.active .arrow {
+      transform: rotate(180deg);
     }
   </style>
 </head>
@@ -207,6 +280,7 @@
 
     <div class="event-details">
       <div class="date-badge">24 . 10 . 2026</div>
+      <div class="time-badge">ÀS 11H</div>
       <p><strong>Igreja Nossa Senhora Aparecida</strong><br>
       Av. 10, nº 98-186 - Vila Monte Alegre<br>Itirapina - SP</p>
     </div>
@@ -215,6 +289,41 @@
       <a href="https://noivos.casar.com/ias-e-guh#rsvp" target="_blank" class="btn btn-rsvp">
         ✅ Confirmar Presença
       </a>
+
+      <!-- Botão novo -->
+      <button type="button" class="btn btn-outline" id="infoBtn" onclick="toggleInfo()" aria-expanded="false" aria-controls="infoPanel">
+        ✨ Como Vai Ser o Grande Dia <span class="arrow">▾</span>
+      </button>
+      <div class="info-panel" id="infoPanel">
+        <div class="info-inner">
+          <h3>🥂 O que vamos oferecer</h3>
+          <ul>
+            <li>Almoço com churrasco 🍖</li>
+            <li>Bebidas não alcoólicas</li>
+            <li>Chácara com piscina após a cerimônia 🏊</li>
+            <li>Muito carinho, boa companhia e momentos para guardar no coração 💛</li>
+          </ul>
+
+          <h3>🎒 O que levar</h3>
+          <ul>
+            <li>Roupa de piscina e toalha</li>
+            <li>Seu próprio cooler, caso leve bebida alcoólica</li>
+            <li>Muita alegria e disposição para festejar!</li>
+          </ul>
+
+          <h3>💡 Dicas e boas práticas</h3>
+          <ul>
+            <li>Chegar até 15 minutos antes da cerimônia</li>
+            <li>Não ir de branco</li>
+            <li>Convidado não convida 😄</li>
+            <li>Confirmar sua ilustre presença até o dia 15/10/2026 💛</li>
+            <li>Evite assuntos polêmicos (política, religião etc.) que possam gerar intriga, só por hoje, pusavorzinhu 🙏</li>
+            <li>Lembrar que é um ambiente familiar 😊</li>
+            <li>Deixar as brigas para outro dia 😄</li>
+          </ul>
+        </div>
+      </div>
+
       <a href="https://noivos.casar.com/ias-e-guh#presentes" target="_blank" class="btn btn-outline">
         🎁 Lista de Presentes
       </a>
@@ -229,6 +338,14 @@
   function openEnvelope() {
     document.getElementById('envelope').style.display = 'none';
     document.getElementById('invitation').style.display = 'block';
+  }
+
+  function toggleInfo() {
+    var panel = document.getElementById('infoPanel');
+    var btn = document.getElementById('infoBtn');
+    var isOpen = panel.classList.toggle('open');
+    btn.classList.toggle('active', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
   }
 </script>
 
